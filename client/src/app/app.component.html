@@ -1,5 +1,5 @@
 <h1>My cart</h1>
 <div fxLayout="row" fxFill>
-  <app-item-list [itemList]="itemList" (itemClick) ="onItemClick($event)" fxFlex="50"></app-item-list>
-  <app-item-form fxFlex="50"></app-item-form>
+  <app-item-list [itemList]="itemList" (itemClick)="onItemClick($event)" fxFlex="30"></app-item-list>
+  <app-item-form [item]="item" (onUpdate)="onUpdate($event)" fxFlex></app-item-form>
 </div>

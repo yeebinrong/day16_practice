@@ -12,6 +12,7 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
+import { CartService } from './cart.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     HttpClientModule
   ],
-  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}],
+  providers: [{provide: MAT_DATE_LOCALE, useValue: 'en-GB'}, CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-
+import { Form } from '@angular/forms';
+import { CartService } from './cart.service';
 import { cartItem } from './models';
 
 @Component({
@@ -12,19 +12,25 @@ import { cartItem } from './models';
 export class AppComponent implements OnInit {
   title = 'client';
   itemList: cartItem[] = [];
-  itemForm: FormGroup;
+  item: cartItem;
 
   // fb and http is dependenciy injection
-  constructor(fb: FormBuilder, private http: HttpClient) { }
+  constructor(private cartSvc: CartService) { }
 
   async ngOnInit() {
-    this.itemList = await this.http.get<cartItem[]>('http://localhost:3000/cart')
-      .toPromise();
-
-    console.info(' >> item List', this.itemList)
+    this.item = { id: null, item: null, quantity: null };
+    this.itemList = await this.cartSvc.getCart();
   }
   
-  onItemClick (i) {
-    console.log("item id is : ", i);
+  async onItemClick ($event: string) {
+    this.item = await this.cartSvc.getItem($event);
+  }
+
+  async onUpdate ($event: cartItem) {
+    // PUT /cart/:id
+    console.info("updating");
+    await this.cartSvc.updateItem($event);
+    // refresh list
+    this.itemList = await this.cartSvc.getCart();
   }
 }

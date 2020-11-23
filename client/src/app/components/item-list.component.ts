@@ -7,14 +7,14 @@ import { cartItem } from '../models';
   styleUrls: ['./item-list.component.css']
 })
 export class ItemListComponent implements OnInit {
-  @Input() itemList:cartItem[];
-  @Output() itemClick = new EventEmitter();
+  @Input() itemList:cartItem[] = [];
+  @Output() itemClick = new EventEmitter<string>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onClick (i) {
+  onClick (i:string) {
     this.itemClick.next(i);
   }
 }
