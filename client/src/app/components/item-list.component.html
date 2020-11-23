@@ -1,0 +1,9 @@
+<h1>Item List</h1>
+<ng-container *ngFor="let item of itemList">
+    <mat-card>
+        <p>{{item.id}}</p>
+        <p>{{item.item}}</p>
+        <p>{{item.quantity}}</p>
+        <button type="button" (click)="onClick(item.id)">Click Me.</button>
+    </mat-card>
+</ng-container>
